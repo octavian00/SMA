@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout ll_dialog;
-    Button btn_ok,btn_cancel,btn_arataDialogul;
+    Button btn_ok,btn_cancel,btn_arataDialogul, btn_sharedPreferences,btn_file,btn_room;
     EditText edt_Text;
 
     @Override
@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         btn_ok = findViewById(R.id.btn_OK);
         btn_cancel = findViewById(R.id.btn_Cancel);
         edt_Text = findViewById(R.id.edt_Text);
+        btn_sharedPreferences = findViewById(R.id.btn_sharedPreferences);
+        btn_file = findViewById(R.id.btn_file);
+        btn_room = findViewById(R.id.btn_room);
     }
 
     private void onClickButtons(){
@@ -57,10 +60,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        btn_sharedPreferences.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedActivity(SharedPreference.class);
+            }
+        });
+        btn_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedActivity(File.class);
+            }
+        });
+        btn_room.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedActivity(RoomPlusSQL.class);
+            }
+        });
     }
     private void newActivity(String text){
         Intent intent = new Intent(this,SecondActivity.class);
         intent.putExtra("text",text);
+        startActivity(intent);
+    }
+    private void sharedActivity(Class classs){
+        Intent intent = new Intent(this, classs);
         startActivity(intent);
     }
 }

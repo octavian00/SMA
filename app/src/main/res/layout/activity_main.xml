@@ -42,5 +42,21 @@
         </LinearLayout>
 
   </LinearLayout>
+    <Button
+        android:id="@+id/btn_sharedPreferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to shared Preferences"/>
+    <Button
+        android:id="@+id/btn_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to shared File"/>
+    <Button
+        android:id="@+id/btn_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Room+SQLLITE"/>
+
 
 </LinearLayout>
