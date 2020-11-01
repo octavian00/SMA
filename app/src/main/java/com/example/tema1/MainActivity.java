@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout ll_dialog;
-    Button btn_ok,btn_cancel,btn_arataDialogul, btn_sharedPreferences,btn_file,btn_room;
+    Button btn_ok,btn_cancel,btn_arataDialogul, btn_sharedPreferences,btn_file,btn_room,btn_login;
     EditText edt_Text;
 
     @Override
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btn_sharedPreferences = findViewById(R.id.btn_sharedPreferences);
         btn_file = findViewById(R.id.btn_file);
         btn_room = findViewById(R.id.btn_room);
+        btn_login = findViewById(R.id.btn_login);
     }
 
     private void onClickButtons(){
@@ -76,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sharedActivity(RoomPlusSQL.class);
+            }
+        });
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedActivity(LoginActivity.class);
             }
         });
     }

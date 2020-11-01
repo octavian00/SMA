@@ -43,20 +43,30 @@
 
   </LinearLayout>
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/btn_sharedPreferences"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Go to shared Preferences"/>
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/btn_file"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Go to shared File"/>
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/btn_room"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Go to Room+SQLLITE"/>
+
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to LOGIN"/>
 
 
 </LinearLayout>
