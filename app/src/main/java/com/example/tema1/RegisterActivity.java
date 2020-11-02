@@ -3,6 +3,7 @@ package com.example.tema1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity{
         }
         InsertValue insertValue = new InsertValue();
         insertValue.execute();
-        GetFromDatabase();
+        writeSharedPref();
         nextActivity(BottomNavigationExampleActivity.class);
     }
 
@@ -93,20 +94,10 @@ public class RegisterActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private void GetFromDatabase(){
-        class GetValue extends AsyncTask<Void,Void, User>{
-
-            @Override
-            protected User doInBackground(Void... voids) {
-                userList = userDatabase.userDAO().getAll();
-                Log.e("sizeList",userList.size()+"");
-                for (User user : userList) {
-                    System.out.println(user.getUsername()+ " "+ user.getPassword());
-                }
-                return new User();
-            }
-        }
-        GetValue getValue = new GetValue();
-        getValue.execute();
+    private void writeSharedPref(){
+        SharedPreferences.Editor editor = getSharedPreferences(AppConstants.MY_PREFS,MODE_PRIVATE).edit();
+        editor.putString(AppConstants.MY_USER,username);
+        editor.putString(AppConstants.MY_PASSWORD,password);
+        editor.apply();
     }
 }

@@ -21,7 +21,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
         tv_email = itemView.findViewById(R.id.tv_emailadress);
     }
     public void setValues(String username, String email, int age){
-        Log.e("ajung aici","zuzu");
+        Log.e("ajung aiciHOlder",username);
         tv_username.setText(username);
         tv_email.setText(email);
         tv_age.setText(age+"");

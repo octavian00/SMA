@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initialize();
+        readSharedPref();
         listener();
     }
 
@@ -102,6 +103,14 @@ public class LoginActivity extends AppCompatActivity  {
         Intent intent = new Intent(this, classs);
         intent.putExtra("username", username);
         startActivity(intent);
+    }
+
+    private void readSharedPref(){
+        SharedPreferences prefs = getSharedPreferences(AppConstants.MY_PREFS, MODE_PRIVATE);
+        String name = prefs.getString(AppConstants.MY_USER,"");
+        String password = prefs.getString(AppConstants.MY_PASSWORD,"");
+        edt_username.setText(name);
+        edt_password.setText(password);
     }
 
 }
