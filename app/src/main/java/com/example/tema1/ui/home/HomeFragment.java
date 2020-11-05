@@ -3,6 +3,7 @@ package com.example.tema1.ui.home;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,14 @@ public class HomeFragment extends Fragment {
     private UserDatabase userDatabase;
     private List<User> userList;
     private User userToEdit;
+    private String username, password,emailAdress;
+    private int age;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initialize(root);
         GetFromDatabase();
+        listener();
         return root;
     }
     private void initialize(View root){
@@ -81,33 +85,36 @@ public class HomeFragment extends Fragment {
         getValue.execute();
     }
 
-//    private void UpdateDatabase(){
-//        class UpdateValue extends AsyncTask<Void,Void, User>{
-//
-//            @Override
-//            protected User doInBackground(Void... voids) {
-//                userList = userDatabase.userDAO().update(user);
-//                return new User();
-//            }
-//            @Override
-//            protected void onPostExecute(User testEntity) {
-//                super.onPostExecute(testEntity);
-//                userToEdit = getUserFromDatabase();
-//                if(userToEdit!=null){
-//                    setText(userToEdit);
-//                }
-//            }
-//        }
-//        UpdateValue updateValue = new UpdateValue();
-//        updateValue.execute();
-//    }
+    private void UpdateDatabase(){
+        class UpdateValue extends AsyncTask<Void,Void, User>{
+
+            @Override
+            protected User doInBackground(Void... voids) {
+                userDatabase.userDAO().update(username,password,emailAdress,age);
+                return new User();
+            }
+            @Override
+            protected void onPostExecute(User testEntity) {
+                super.onPostExecute(testEntity);
+            }
+        }
+        UpdateValue updateValue = new UpdateValue();
+        updateValue.execute();
+    }
 
     private void listener(){
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setData();
+                UpdateDatabase();
             }
         });
+    }
+    private void setData(){
+        username = edt_username.getText().toString();
+        password = edt_password.getText().toString();
+        emailAdress = edt__email.getText().toString();
+        age= Integer.parseInt(edt_age.getText().toString());
     }
 }

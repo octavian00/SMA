@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 
 @Database(entities = {User.class}, version = 1, exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
-    private final static  String DB_NAME="USER_DBBB";
+    private final static  String DB_NAME="USER_DATABASE";
     public static UserDatabase instance;
     public static synchronized UserDatabase getInstance(Context context){
         if(instance == null){

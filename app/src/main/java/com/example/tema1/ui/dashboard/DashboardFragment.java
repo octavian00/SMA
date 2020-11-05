@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,18 +35,20 @@ public class DashboardFragment extends Fragment {
     private UserDatabase userDatabase;
     private UserAdapter userAdapter;
     private List<User> userList;
+    private Button button;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         initializeViews(root);
         GetFromDatabase();
-        //setRecyclerView();
+        listener();
         return root;
     }
 
     private void initializeViews(View view)
     {
+        button=view.findViewById(R.id.btn_refresh);
         userList = new ArrayList<>();
         userDatabase = UserDatabase.getInstance(getContext());
         user_rv = view.findViewById(R.id.rv_user);
@@ -75,5 +78,14 @@ public class DashboardFragment extends Fragment {
         }
         GetValue getValue = new GetValue();
         getValue.execute();
+    }
+    private void listener(){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetFromDatabase();
+                setRecyclerView();
+            }
+        });
     }
 }

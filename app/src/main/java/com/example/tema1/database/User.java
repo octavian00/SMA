@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey;
 @Entity
 public class User {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
     @ColumnInfo(name = "username")
-    private String username;
+    public String username;
     @ColumnInfo(name = "password")
-    private String password;
+    public String password;
     @ColumnInfo(name = "emailAdress")
-    private String emailadress;
+    public String emailadress;
     @ColumnInfo(name = "age")
-    private int age;
+    public int age;
 
     @Ignore
     public User(){}

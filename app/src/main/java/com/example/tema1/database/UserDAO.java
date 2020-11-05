@@ -18,8 +18,8 @@ public interface UserDAO {
     @Query("SELECT * FROM user WHERE username LIKE :first LIMIT 1")
     User findByName(String first);
 
-//    @Query("UPDATE User SET username=user.username, password=user.password, emailAdress=user.emailAdress, age=user.age WHERE id=user.id")
-//    void update(User user);
+    @Query("UPDATE User SET username = :username, password=:password, emailadress=:emailAdress, age=:age WHERE username = :username")
+    void update(String username,String password, String emailAdress, int age);
 
     @Insert
     void insertAll(User... users);
