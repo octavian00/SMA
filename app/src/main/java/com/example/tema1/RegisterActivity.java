@@ -1,5 +1,6 @@
 package com.example.tema1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,7 +16,12 @@ import android.widget.Toast;
 
 import com.example.tema1.database.User;
 import com.example.tema1.database.UserDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +29,11 @@ import java.util.List;
 public class RegisterActivity extends AppCompatActivity{
     EditText edt_username,edt_password;
     TextView txt_register;
-    Button btn_register;
+    Button btn_register,btn_firebaseRegister;
     private UserDatabase userDatabase;
     private String username, password;
     private List<User> userList;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +42,14 @@ public class RegisterActivity extends AppCompatActivity{
         listener();
     }
     private void initialize(){
+        mAuth=FirebaseAuth.getInstance();
         userList = new ArrayList<>();
         edt_password = findViewById(R.id.edt_PasswrodRegister);
         edt_username = findViewById(R.id.edt_UsernameRegister);
         btn_register = findViewById(R.id.btn_Register);
         txt_register = findViewById(R.id.tv_login);
         userDatabase = UserDatabase.getInstance(this);
+        btn_firebaseRegister = findViewById(R.id.btn_RegisterFirebase);
     }
 
     private void listener(){
@@ -66,6 +75,18 @@ public class RegisterActivity extends AppCompatActivity{
                         insertToDatabase(username,password);
                     }
                 });
+            }
+        });
+        btn_firebaseRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.createUserWithEmailAndPassword(username, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                
+                            }
+                        });
             }
         });
 
