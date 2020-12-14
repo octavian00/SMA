@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout ll_dialog;
-    Button btn_ok,btn_cancel,btn_arataDialogul, btn_sharedPreferences,btn_file,btn_room,btn_login;
+    Button btn_ok,btn_cancel,btn_arataDialogul,
+            btn_sharedPreferences,btn_file,btn_room,btn_login,btn_fireaseLogin, btn_addBook;
     EditText edt_Text;
 
     @Override
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         btn_file = findViewById(R.id.btn_file);
         btn_room = findViewById(R.id.btn_room);
         btn_login = findViewById(R.id.btn_login);
+        btn_fireaseLogin = findViewById(R.id.btn_loginFirebase);
+        btn_addBook = findViewById(R.id.btn_addBookFirebase);
     }
 
     private void onClickButtons(){
@@ -85,6 +88,18 @@ public class MainActivity extends AppCompatActivity {
                 sharedActivity(LoginActivity.class);
             }
         });
+        btn_fireaseLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedActivity(LoginFirebase.class);
+            }
+        });
+        btn_addBook.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedActivity(AddShowFirebaseData.class);
+            }
+        }));
     }
     private void newActivity(String text){
         Intent intent = new Intent(this,SecondActivity.class);

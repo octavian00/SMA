@@ -68,5 +68,19 @@
         android:layout_height="wrap_content"
         android:text="Go to LOGIN"/>
 
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/btn_loginFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to Firebase LOGIN"/>
+
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/btn_addBookFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AddBook"/>
+
 
 </LinearLayout>

@@ -41,6 +41,13 @@ public class User {
         this.age = age;
     }
 
+    public User(String name, String zuzu, String email, int age) {
+        this.username=name;
+        this.password=zuzu;
+        this.emailadress=email;
+        this.age=age;
+    }
+
     public int getId() {
         return id;
     }
